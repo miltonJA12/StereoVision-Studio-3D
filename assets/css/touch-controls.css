@@ -1,0 +1,187 @@
+
+/* ============================================
+   STEREOVISION STUDIO 3D
+   Ejemplos y controles táctiles
+   ============================================ */
+
+.example-button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px;
+  min-height: 44px;
+  border-color: #385070;
+}
+
+/* ============================================
+   PANTALLA COMPLETA ANAGLIFO
+   ============================================ */
+
+#viewerStage.anaglyph-fullscreen {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  aspect-ratio: auto !important;
+  background: #000 !important;
+}
+
+#viewerStage.anaglyph-fullscreen:fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+}
+
+#viewerStage.anaglyph-fullscreen.fallback {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2000 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+}
+
+#viewerStage.anaglyph-fullscreen
+#anaglyphViewer {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#viewerStage.anaglyph-fullscreen
+#anaglyphImage {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+#anaglyphExitFullscreen {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top));
+  right: max(12px, env(safe-area-inset-right));
+  z-index: 30;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 9px;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(10,16,30,.88);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#anaglyphExitFullscreen[hidden] {
+  display: none !important;
+}
+
+/* ============================================
+   PANEL TÁCTIL
+   ============================================ */
+
+.stereo-touch-panel {
+  position: absolute;
+  left: max(10px, env(safe-area-inset-left));
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 40;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  max-width: min(350px, 94vw);
+  font-family: Inter, system-ui, sans-serif;
+  color: #fff;
+  pointer-events: auto;
+}
+
+.stereo-touch-panel[hidden] {
+  display: none !important;
+}
+
+.touch-action {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 9px;
+  border: 1px solid #425777;
+  padding: 9px 12px;
+  background: #1c2b46;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.touch-action:active {
+  background: #377dff;
+}
+
+.touch-toggle {
+  background: rgba(39,92,200,.96);
+  border-color: #6aa5ff;
+  box-shadow: 0 4px 18px rgba(0,0,0,.4);
+}
+
+.touch-content {
+  display: none;
+  max-height: min(65dvh, 390px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  width: min(350px, 94vw);
+  padding: 12px;
+  border-radius: 13px;
+  border: 1px solid #385070;
+  background: rgba(10,16,30,.94);
+  box-shadow: 0 12px 35px rgba(0,0,0,.4);
+}
+
+.stereo-touch-panel.expanded
+.touch-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.touch-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.touch-group-title {
+  font-size: 11px;
+  color: #bdd1f2;
+  font-weight: 600;
+}
+
+.touch-group-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.touch-group-actions .touch-action {
+  flex: 1;
+}
+
+@media (max-width: 700px) {
+  .touch-content {
+    width: min(290px, 85vw);
+    max-height: 48dvh;
+  }
+
+  .touch-action {
+    font-size: 12px;
+  }
+}
+
+@media (orientation: landscape)
+and (max-height: 500px) {
+  .touch-content {
+    max-height: 54dvh;
+  }
+}

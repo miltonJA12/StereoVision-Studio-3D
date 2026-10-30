@@ -1,0 +1,1005 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta name="theme-color" content="#0b1020">
+
+  <meta
+    name="description"
+    content="StereoVision Studio 3D: edición, calibración y visualización estereoscópica."
+  >
+
+  <title>StereoVision Studio 3D</title>
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="./assets/img/favicon.svg"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./assets/css/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./assets/css/touch-controls.css"
+  >
+
+  <!-- =====================================
+       ESTILOS DEL FOOTER ACADÉMICO
+       ===================================== -->
+
+  <style>
+    .academic-footer {
+      padding: 24px 28px 14px;
+      background: #101827;
+      border-top: 1px solid #26344b;
+    }
+
+    .academic-footer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .academic-footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .academic-footer-logo {
+      width: 39px;
+      height: 39px;
+      border-radius: 11px;
+      background: linear-gradient(
+        135deg,
+        #377dff,
+        #9275ff
+      );
+      display: grid;
+      place-items: center;
+    }
+
+    .academic-footer-logo img {
+      width: 27px;
+      height: 27px;
+    }
+
+    .academic-footer-brand h2 {
+      margin: 0 0 5px;
+      font-size: 15px;
+      color: #eef4ff;
+    }
+
+    .academic-footer-brand p {
+      margin: 0;
+      font-size: 11px;
+      color: #a7b7cf;
+    }
+
+    .academic-footer-year {
+      color: #93a6c5;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .academic-footer-divider {
+      height: 1px;
+      background: #26344b;
+      margin: 19px 0;
+    }
+
+    .academic-footer-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 22px 35px;
+    }
+
+    .academic-footer-item {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .academic-footer-label {
+      color: #8195b5;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.1px;
+    }
+
+    .academic-footer-value {
+      color: #eef4ff;
+      font-size: 12px;
+      line-height: 1.65;
+      overflow-wrap: anywhere;
+    }
+
+    .academic-footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: #8195b5;
+      font-size: 10px;
+      padding-bottom: 4px;
+    }
+
+    @media (max-width: 700px) {
+      .academic-footer {
+        padding: 22px 17px 14px;
+      }
+
+      .academic-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .academic-footer-brand h2 {
+        font-size: 14px;
+      }
+
+      .academic-footer-value {
+        font-size: 11px;
+      }
+    }
+  </style>
+
+  <script
+    type="module"
+    src="./assets/js/main.js"
+  ></script>
+</head>
+
+<body>
+
+  <div class="app-shell" id="app">
+
+    <!-- =====================================
+         ENCABEZADO
+         ===================================== -->
+
+    <header class="app-header">
+
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          ◉
+        </div>
+
+        <div class="brand-info">
+          <h1>StereoVision</h1>
+          <span>STUDIO 3D</span>
+        </div>
+      </div>
+
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span id="systemStatus">
+          Sistema preparado
+        </span>
+      </div>
+
+      <div class="header-actions">
+
+        <button
+          type="button"
+          class="btn btn-outline"
+          id="resetAllBtn"
+          disabled
+        >
+          Restablecer
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="enterVRBtn"
+          disabled
+        >
+          Modo VR
+        </button>
+
+      </div>
+
+    </header>
+
+    <!-- =====================================
+         STUDIO PRINCIPAL
+         ===================================== -->
+
+    <div class="studio-layout">
+
+      <!-- BARRA LATERAL -->
+
+      <aside class="sidebar">
+
+        <div class="sidebar-heading">
+          <span>ESPACIO DE TRABAJO</span>
+        </div>
+
+        <nav
+          class="module-navigation"
+          aria-label="Módulos de visualización"
+        >
+
+          <button
+            type="button"
+            class="module-btn active"
+            data-module="anaglyph"
+            aria-pressed="true"
+          >
+            <span class="module-icon">◉</span>
+            <span class="module-label">
+              <strong>Anaglifo</strong>
+              <small>Rojo / Cian</small>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            class="module-btn"
+            data-module="sbs-image"
+            aria-pressed="false"
+          >
+            <span class="module-icon">▣</span>
+            <span class="module-label">
+              <strong>Imagen SBS</strong>
+              <small>Estereoscopía 3D</small>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            class="module-btn"
+            data-module="sbs-video"
+            aria-pressed="false"
+          >
+            <span class="module-icon">▶</span>
+            <span class="module-label">
+              <strong>Video SBS</strong>
+              <small>Reproductor 3D</small>
+            </span>
+          </button>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-heading">
+          <span>ARCHIVO MULTIMEDIA</span>
+        </div>
+
+        <!-- IMPORTACIÓN -->
+
+        <div class="import-section">
+
+          <input
+            type="file"
+            id="fileInput"
+            hidden
+          >
+
+          <button
+            type="button"
+            class="import-button"
+            id="importBtn"
+          >
+            <span class="import-icon">＋</span>
+            <strong>Importar archivo</strong>
+            <small id="supportedFormats">
+              JPG, PNG, WebP
+            </small>
+          </button>
+
+          <!-- El botón Cargar ejemplo
+               se genera desde examples.js -->
+
+        </div>
+
+        <!-- INFORMACIÓN DEL ARCHIVO -->
+
+        <div class="file-information">
+
+          <div class="info-heading">
+            INFORMACIÓN DEL ARCHIVO
+          </div>
+
+          <div class="info-row">
+            <span>Nombre</span>
+            <strong id="fileName">
+              Sin archivo
+            </strong>
+          </div>
+
+          <div class="info-row">
+            <span>Formato</span>
+            <strong id="fileFormat">—</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Resolución</span>
+            <strong id="fileResolution">—</strong>
+          </div>
+
+          <div class="info-row">
+            <span>Tamaño</span>
+            <strong id="fileSize">—</strong>
+          </div>
+
+        </div>
+
+        <div class="sidebar-footer">
+          <span>STEREOVISION STUDIO</span>
+          <small>Visualización 3D local</small>
+        </div>
+
+      </aside>
+
+      <!-- =====================================
+           VISUALIZADOR CENTRAL
+           ===================================== -->
+
+      <main class="workspace">
+
+        <div class="workspace-header">
+
+          <div>
+            <span class="eyebrow">
+              VISUALIZADOR
+            </span>
+
+            <h2 id="workspaceTitle">
+              Editor Anaglifo
+            </h2>
+
+            <p id="workspaceDescription">
+              Importa una imagen rojo-cian para comenzar.
+            </p>
+          </div>
+
+          <div
+            class="workspace-badge"
+            id="activeModuleBadge"
+          >
+            ANAGLIFO
+          </div>
+
+        </div>
+
+        <section
+          class="viewer-container"
+          aria-label="Visualizador multimedia"
+        >
+
+          <div
+            class="viewer-stage"
+            id="viewerStage"
+          >
+
+            <!-- PANTALLA SIN CONTENIDO -->
+
+            <div
+              class="empty-state"
+              id="emptyState"
+            >
+
+              <div
+                class="empty-icon"
+                aria-hidden="true"
+              >
+                ◈
+              </div>
+
+              <h3>
+                Tu espacio de visualización
+              </h3>
+
+              <p>
+                Importa contenido estereoscópico
+                para comenzar a visualizarlo
+                y calibrarlo.
+              </p>
+
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="emptyImportBtn"
+              >
+                Seleccionar archivo
+              </button>
+
+            </div>
+
+            <!-- ANAGLIFO -->
+
+            <div
+              class="media-view hidden"
+              id="anaglyphViewer"
+              aria-label="Visualizador anaglifo"
+            >
+              <img
+                id="anaglyphImage"
+                alt="Imagen anaglifo cargada"
+              >
+            </div>
+
+            <!-- IMAGEN SBS -->
+
+            <div
+              class="media-view sbs-view hidden"
+              id="sbsImageViewer"
+              aria-label="Visualizador de imagen SBS"
+            >
+
+              <div
+                class="eye-container"
+                id="leftEyeContainer"
+              >
+                <canvas
+                  id="leftEyeCanvas"
+                  aria-label="Vista del ojo izquierdo"
+                ></canvas>
+                <span class="eye-label">L</span>
+              </div>
+
+              <div
+                class="eye-container"
+                id="rightEyeContainer"
+              >
+                <canvas
+                  id="rightEyeCanvas"
+                  aria-label="Vista del ojo derecho"
+                ></canvas>
+                <span class="eye-label">R</span>
+              </div>
+
+            </div>
+
+            <!-- VIDEO SBS -->
+
+            <div
+              class="media-view sbs-view hidden"
+              id="sbsVideoViewer"
+              aria-label="Visualizador de video SBS"
+            >
+
+              <div class="eye-container">
+                <canvas
+                  id="videoLeftCanvas"
+                  aria-label="Video del ojo izquierdo"
+                ></canvas>
+                <span class="eye-label">L</span>
+              </div>
+
+              <div class="eye-container">
+                <canvas
+                  id="videoRightCanvas"
+                  aria-label="Video del ojo derecho"
+                ></canvas>
+                <span class="eye-label">R</span>
+              </div>
+
+            </div>
+
+            <!-- FUENTE ÚNICA DE VIDEO -->
+
+            <video
+              id="sourceVideo"
+              preload="metadata"
+              playsinline
+              webkit-playsinline
+              class="source-video"
+            ></video>
+
+            <!-- INDICADOR DE CARGA -->
+
+            <div
+              class="loading-overlay hidden"
+              id="loadingOverlay"
+              role="status"
+              aria-live="polite"
+            >
+              <div class="spinner"></div>
+              <p>Preparando contenido...</p>
+            </div>
+
+          </div>
+
+          <div class="viewer-toolbar">
+
+            <div class="viewer-details">
+              <span class="viewer-indicator"></span>
+              <span id="viewerStatus">
+                Esperando contenido
+              </span>
+            </div>
+
+            <span id="zoomIndicator">100%</span>
+
+          </div>
+
+        </section>
+
+        <!-- CONTROLES DEL VIDEO -->
+
+        <section
+          class="video-controls hidden"
+          id="videoControls"
+          aria-label="Controles de reproducción"
+        >
+
+          <div class="video-progress">
+            <input
+              type="range"
+              id="videoSeek"
+              min="0"
+              max="100"
+              step="0.1"
+              value="0"
+              aria-label="Posición del video"
+            >
+          </div>
+
+          <div class="video-control-row">
+
+            <div class="playback-buttons">
+
+              <button
+                type="button"
+                id="backwardBtn"
+                aria-label="Retroceder cinco segundos"
+              >
+                -5s
+              </button>
+
+              <button
+                type="button"
+                id="playPauseBtn"
+                aria-label="Reproducir o pausar"
+              >
+                ▶
+              </button>
+
+              <button
+                type="button"
+                id="forwardBtn"
+                aria-label="Adelantar cinco segundos"
+              >
+                +5s
+              </button>
+
+            </div>
+
+            <div class="time-display">
+              <span id="currentTime">00:00</span>
+              /
+              <span id="duration">00:00</span>
+            </div>
+
+            <div class="volume-control">
+
+              <label for="volumeSlider">
+                Volumen
+              </label>
+
+              <input
+                type="range"
+                id="volumeSlider"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+              >
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- =====================================
+           PANEL DE HERRAMIENTAS
+           ===================================== -->
+
+      <aside class="tools-panel">
+
+        <div class="tools-header">
+
+          <div>
+            <span class="eyebrow">
+              PANEL DE EDICIÓN
+            </span>
+            <h2>Herramientas</h2>
+          </div>
+
+          <span class="tools-icon">⚙</span>
+
+        </div>
+
+        <!-- AJUSTES VISUALES -->
+
+        <section
+          class="tool-section"
+          id="visualTools"
+        >
+
+          <div class="section-title">
+            <h3>Ajustes visuales</h3>
+          </div>
+
+          <div class="control-group">
+
+            <div class="control-heading">
+              <label for="scaleSlider">
+                Escala
+              </label>
+              <output id="scaleValue">
+                100%
+              </output>
+            </div>
+
+            <input
+              type="range"
+              id="scaleSlider"
+              min="50"
+              max="200"
+              value="100"
+              disabled
+            >
+
+          </div>
+
+          <div
+            class="control-group"
+            id="brightnessControl"
+          >
+
+            <div class="control-heading">
+              <label for="brightnessSlider">
+                Brillo
+              </label>
+              <output id="brightnessValue">
+                100%
+              </output>
+            </div>
+
+            <input
+              type="range"
+              id="brightnessSlider"
+              min="0"
+              max="200"
+              value="100"
+              disabled
+            >
+
+          </div>
+
+          <div
+            class="control-group"
+            id="contrastControl"
+          >
+
+            <div class="control-heading">
+              <label for="contrastSlider">
+                Contraste
+              </label>
+              <output id="contrastValue">
+                100%
+              </output>
+            </div>
+
+            <input
+              type="range"
+              id="contrastSlider"
+              min="0"
+              max="200"
+              value="100"
+              disabled
+            >
+
+          </div>
+
+        </section>
+
+        <!-- CALIBRACIÓN ESTEREOSCÓPICA -->
+
+        <section
+          class="tool-section hidden"
+          id="stereoTools"
+        >
+
+          <div class="section-title">
+            <h3>
+              Calibración estereoscópica
+            </h3>
+          </div>
+
+          <div class="control-group">
+
+            <div class="control-heading">
+              <label for="horizontalSlider">
+                Desplazamiento horizontal
+              </label>
+              <output id="horizontalValue">
+                0 px
+              </output>
+            </div>
+
+            <input
+              type="range"
+              id="horizontalSlider"
+              min="-40"
+              max="40"
+              value="0"
+              disabled
+            >
+
+          </div>
+
+          <div
+            class="control-group"
+            id="verticalControl"
+          >
+
+            <div class="control-heading">
+              <label for="verticalSlider">
+                Alineación vertical
+              </label>
+              <output id="verticalValue">
+                0 px
+              </output>
+            </div>
+
+            <input
+              type="range"
+              id="verticalSlider"
+              min="-40"
+              max="40"
+              value="0"
+              disabled
+            >
+
+          </div>
+
+          <label class="toggle-row">
+
+            <span>Intercambiar ojos</span>
+
+            <input
+              type="checkbox"
+              id="swapEyesToggle"
+              disabled
+            >
+
+            <span class="toggle-switch"></span>
+
+          </label>
+
+        </section>
+
+        <!-- ACCIONES -->
+
+        <section class="tool-section">
+
+          <div class="section-title">
+            <h3>Acciones</h3>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-outline btn-full"
+            id="resetModuleBtn"
+            disabled
+          >
+            Restablecer ajustes
+          </button>
+
+        </section>
+
+        <!-- SEGURIDAD VISUAL -->
+
+        <div class="tools-help">
+
+          <strong>Confort visual</strong>
+
+          <p>
+            Ajusta las perspectivas gradualmente.
+            Si experimentas visión doble,
+            fatiga ocular o mareo,
+            detén la visualización.
+          </p>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- =====================================
+         FOOTER ACADÉMICO
+         ===================================== -->
+
+    <footer class="academic-footer">
+
+      <div class="academic-footer-header">
+
+        <div class="academic-footer-brand">
+
+          <div class="academic-footer-logo">
+            <img
+              src="./assets/img/favicon.svg"
+              alt=""
+            >
+          </div>
+
+          <div>
+            <h2>StereoVision Studio 3D</h2>
+            <p>
+              Proyecto académico · Ambientes Virtuales
+            </p>
+          </div>
+
+        </div>
+
+        <span class="academic-footer-year">
+          2026
+        </span>
+
+      </div>
+
+      <div class="academic-footer-divider"></div>
+
+      <div class="academic-footer-grid">
+
+        <div class="academic-footer-item">
+
+          <span class="academic-footer-label">
+            ESTUDIANTE
+          </span>
+
+          <span class="academic-footer-value">
+            Milton Juarez Austria
+          </span>
+
+        </div>
+
+        <div class="academic-footer-item">
+
+          <span class="academic-footer-label">
+            NÚMERO DE CONTROL
+          </span>
+
+          <span class="academic-footer-value">
+            22200783
+          </span>
+
+        </div>
+
+        <div class="academic-footer-item">
+
+          <span class="academic-footer-label">
+            CARRERA
+          </span>
+
+          <span class="academic-footer-value">
+            Tecnologías de la Información
+            y Comunicaciones
+          </span>
+
+        </div>
+
+        <div class="academic-footer-item">
+
+          <span class="academic-footer-label">
+            INSTITUCIÓN
+          </span>
+
+          <span class="academic-footer-value">
+            Instituto Tecnológico Nacional de Mexico
+            Campus Pachuca
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="academic-footer-divider"></div>
+
+      <div class="academic-footer-bottom">
+
+        <span>
+          Procesamiento multimedia local
+        </span>
+
+        <span>
+          StereoVision Studio 3D · 2026
+        </span>
+
+      </div>
+
+    </footer>
+
+    <!-- BARRA DINÁMICA DE ESTADO -->
+
+    <div class="app-footer" role="status">
+
+      <div class="footer-left">
+        <span class="footer-dot"></span>
+        <span id="footerStatus">
+          Studio preparado
+        </span>
+      </div>
+
+      <div class="footer-right">
+        <span>Procesamiento local</span>
+        <span class="footer-separator">•</span>
+        <span>StereoVision Studio 3D</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- =====================================
+       VISOR VR
+       ===================================== -->
+
+  <div
+    class="vr-overlay hidden"
+    id="vrOverlay"
+    role="dialog"
+    aria-label="Modo de visualización VR"
+    aria-modal="true"
+  >
+
+    <div
+      class="vr-screen"
+      id="vrScreen"
+    ></div>
+
+    <button
+      type="button"
+      class="vr-exit-btn"
+      id="exitVRBtn"
+    >
+      Salir de VR
+    </button>
+
+    <div
+      class="orientation-warning hidden"
+      id="orientationWarning"
+    >
+      Gira tu teléfono horizontalmente
+      para una mejor experiencia VR.
+    </div>
+
+  </div>
+
+  <!-- NOTIFICACIONES -->
+
+  <div
+    class="toast-container"
+    id="toastContainer"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+</body>
+</html>
