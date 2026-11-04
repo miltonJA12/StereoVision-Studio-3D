@@ -1,587 +1,550 @@
 
-/* =============================================
+/* ==========================================
    STEREOVISION STUDIO 3D
-   EMERALD STUDIO THEME
-   Blanco Perla + Verde Esmeralda
-   ============================================= */
+   MIDNIGHT SAGE STUDIO
+   Tema oscuro suave y confortable
+   ========================================== */
 
 :root {
-  --em-bg: #f4f7f4;
-  --em-panel: #ffffff;
-  --em-panel-alt: #f8fbf9;
-  --em-border: #dce8e1;
-
-  --em-primary: #087f67;
-  --em-primary-dark: #076653;
-  --em-mint: #55d6b1;
-  --em-soft: #e1f4eb;
-
-  --em-text: #172b28;
-  --em-muted: #62786e;
-  --em-viewer: #111d1b;
-
-  --em-shadow:
-    0 8px 28px rgba(21, 65, 47, .07);
+  --sage-bg: #1c2427;
+  --sage-panel: #252f32;
+  --sage-panel-soft: #2b3639;
+  --sage-viewer: #151d20;
+  --sage-border: #3b4b4b;
+  --sage-accent: #91b5a5;
+  --sage-accent-dark: #48695e;
+  --sage-accent-hover: #577d6e;
+  --sage-active: #344b45;
+  --sage-text: #e0e8e4;
+  --sage-muted: #a8b8c2;
+  --sage-shadow: 0 8px 24px rgba(0, 0, 0, .12);
 }
 
-/* =============================================
-   BASE GENERAL
-   ============================================= */
+/* ==========================================
+   BASE
+   ========================================== */
 
-html {
-  background: var(--em-bg);
-}
-
+html,
 body {
-  background: var(--em-bg) !important;
-  color: var(--em-text) !important;
+  background: var(--sage-bg) !important;
+  color: var(--sage-text) !important;
 }
 
-.app-shell {
-  background: var(--em-bg) !important;
-  color: var(--em-text) !important;
-  min-height: 100vh;
-}
-
-button,
-input,
-select {
-  font-family: inherit;
+.app-shell,
+.studio-layout {
+  background: var(--sage-bg) !important;
+  color: var(--sage-text) !important;
 }
 
 button {
   transition:
     background .2s ease,
     border-color .2s ease,
-    box-shadow .2s ease,
-    transform .2s ease;
-}
-
-button:not(:disabled):active {
-  transform: scale(.98);
+    box-shadow .2s ease;
 }
 
 button:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--em-primary);
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--sage-accent);
   outline-offset: 3px;
 }
 
 input[type="range"],
 input[type="checkbox"] {
-  accent-color: var(--em-primary);
+  accent-color: var(--sage-accent);
 }
 
-/* =============================================
+/* ==========================================
    ENCABEZADO
-   ============================================= */
+   ========================================== */
 
 .app-header {
-  background: var(--em-panel) !important;
-  border-bottom: 1px solid var(--em-border) !important;
-  box-shadow: 0 2px 14px rgba(0,0,0,.025);
-}
-
-.brand h1,
-.brand-info h1 {
-  color: var(--em-text) !important;
-}
-
-.brand-info span {
-  color: var(--em-primary) !important;
+  background: var(--sage-panel) !important;
+  border-bottom: 1px solid var(--sage-border) !important;
+  box-shadow: none !important;
 }
 
 .brand-icon {
   background: linear-gradient(
-    135deg,
-    var(--em-primary),
-    #23b58c
+    135deg, #48695e, #749a88
   ) !important;
+  color: #f0f7f2 !important;
+  box-shadow: none !important;
+}
 
-  color: #fff !important;
+.brand h1,
+.brand-info h1 {
+  color: var(--sage-text) !important;
+}
 
-  box-shadow:
-    0 5px 14px rgba(8,127,103,.18) !important;
+.brand-info span {
+  color: var(--sage-accent) !important;
 }
 
 .header-status,
 #systemStatus {
-  color: var(--em-muted) !important;
+  color: var(--sage-muted) !important;
 }
 
 .status-dot,
-.viewer-indicator,
-.footer-dot {
-  background: #18b68d !important;
-  box-shadow: 0 0 0 3px rgba(24,182,141,.1);
+.footer-dot,
+.viewer-indicator {
+  background: var(--sage-accent) !important;
+  box-shadow: none !important;
 }
 
-/* =============================================
+/* ==========================================
    BOTONES
-   ============================================= */
+   ========================================== */
 
 .btn-primary,
 #enterVRBtn,
 #emptyImportBtn {
-  background: var(--em-primary) !important;
-  border-color: var(--em-primary) !important;
-  color: #ffffff !important;
-  box-shadow:
-    0 5px 13px rgba(8,127,103,.15) !important;
+  background: var(--sage-accent-dark) !important;
+  color: #f0f7f2 !important;
+  border-color: #668978 !important;
+  box-shadow: none !important;
 }
 
 .btn-primary:hover:not(:disabled),
 #enterVRBtn:hover:not(:disabled),
 #emptyImportBtn:hover:not(:disabled) {
-  background: var(--em-primary-dark) !important;
+  background: var(--sage-accent-hover) !important;
 }
 
 .btn-outline,
 #resetAllBtn,
 #resetModuleBtn {
-  background: var(--em-panel) !important;
-  border: 1px solid var(--em-border) !important;
-  color: var(--em-text) !important;
+  background: var(--sage-panel-soft) !important;
+  border: 1px solid var(--sage-border) !important;
+  color: var(--sage-text) !important;
 }
 
 .btn-outline:hover:not(:disabled),
 #resetAllBtn:hover:not(:disabled),
 #resetModuleBtn:hover:not(:disabled) {
-  background: var(--em-soft) !important;
-  border-color: var(--em-primary) !important;
+  background: var(--sage-active) !important;
+  border-color: var(--sage-accent) !important;
 }
 
 button:disabled {
-  opacity: .45;
+  opacity: .45 !important;
   cursor: not-allowed;
   box-shadow: none !important;
 }
 
-/* =============================================
-   DISTRIBUCIÓN PRINCIPAL
-   ============================================= */
-
-.studio-layout {
-  background: var(--em-bg) !important;
-}
+/* ==========================================
+   PANEL LATERAL
+   ========================================== */
 
 .sidebar {
-  background: var(--em-panel) !important;
-  border-right: 1px solid var(--em-border) !important;
+  background: var(--sage-panel) !important;
+  border-right: 1px solid var(--sage-border) !important;
 }
-
-.workspace {
-  background: var(--em-bg) !important;
-}
-
-.tools-panel {
-  background: var(--em-panel) !important;
-  border-left: 1px solid var(--em-border) !important;
-}
-
-/* =============================================
-   BARRA LATERAL
-   ============================================= */
 
 .sidebar-heading,
 .sidebar-heading span,
 .info-heading,
 .eyebrow {
-  color: var(--em-primary) !important;
+  color: var(--sage-accent) !important;
 }
 
 .sidebar-divider {
-  background: var(--em-border) !important;
-  border-color: var(--em-border) !important;
+  background: var(--sage-border) !important;
+  border-color: var(--sage-border) !important;
 }
 
 .module-btn {
   background: transparent !important;
+  color: var(--sage-text) !important;
   border: 1px solid transparent !important;
-  color: var(--em-text) !important;
   border-radius: 12px;
 }
 
 .module-btn:hover:not(.active) {
-  background: var(--em-panel-alt) !important;
-  border-color: var(--em-border) !important;
+  background: var(--sage-panel-soft) !important;
 }
 
 .module-btn.active {
-  background: var(--em-soft) !important;
-  border-color: #b6dfce !important;
-  color: var(--em-primary) !important;
+  background: var(--sage-active) !important;
+  border-color: #527567 !important;
 }
 
 .module-label strong {
-  color: var(--em-text) !important;
-}
-
-.module-btn.active .module-label strong {
-  color: var(--em-primary) !important;
+  color: var(--sage-text) !important;
 }
 
 .module-label small {
-  color: var(--em-muted) !important;
+  color: var(--sage-muted) !important;
 }
 
 .module-icon {
-  background: #eaf2ed !important;
-  color: var(--em-primary) !important;
+  background: #344346 !important;
+  color: var(--sage-accent) !important;
 }
 
 .module-btn.active .module-icon {
-  background: var(--em-primary) !important;
-  color: #ffffff !important;
+  background: #48695e !important;
+  color: #e0f1e7 !important;
 }
 
-/* =============================================
-   IMPORTACIÓN Y EJEMPLOS
-   ============================================= */
+/* ==========================================
+   IMPORTACIÓN
+   ========================================== */
 
 .import-section {
   background: transparent !important;
 }
 
 .import-button {
-  background: var(--em-panel-alt) !important;
-  border: 1px dashed #9ac9b4 !important;
-  color: var(--em-text) !important;
-  border-radius: 14px;
+  background: var(--sage-panel-soft) !important;
+  border: 1px dashed #617e72 !important;
+  color: var(--sage-text) !important;
+  border-radius: 13px;
 }
 
 .import-button:hover {
-  background: var(--em-soft) !important;
-  border-color: var(--em-primary) !important;
+  background: var(--sage-active) !important;
+  border-color: var(--sage-accent) !important;
 }
 
 .import-button strong {
-  color: var(--em-text) !important;
+  color: var(--sage-text) !important;
 }
 
 .import-button small,
 #supportedFormats {
-  color: var(--em-muted) !important;
+  color: var(--sage-muted) !important;
 }
 
 .import-icon {
-  background: var(--em-soft) !important;
-  color: var(--em-primary) !important;
+  background: var(--sage-active) !important;
+  color: var(--sage-accent) !important;
 }
 
 .example-button {
+  display: block;
   width: 100%;
-  margin-top: 12px;
-  padding: 13px;
   min-height: 44px;
+  margin-top: 12px;
+  padding: 12px;
 
-  background: var(--em-primary) !important;
-  color: #ffffff !important;
-  border: 1px solid var(--em-primary) !important;
-  border-radius: 10px;
+  border-radius: 10px !important;
+  border: 1px solid #668978 !important;
+  background: var(--sage-accent-dark) !important;
+  color: #f0f7f2 !important;
 
   font-size: 12px;
   font-weight: 700;
 }
 
 .example-button:hover:not(:disabled) {
-  background: var(--em-primary-dark) !important;
+  background: var(--sage-accent-hover) !important;
 }
 
-/* =============================================
+/* ==========================================
    INFORMACIÓN DEL ARCHIVO
-   ============================================= */
+   ========================================== */
 
 .file-information {
-  background: var(--em-panel-alt) !important;
-  border: 1px solid var(--em-border) !important;
+  background: var(--sage-panel-soft) !important;
+  border: 1px solid var(--sage-border) !important;
   border-radius: 12px;
 }
 
 .info-heading {
-  color: var(--em-primary) !important;
+  color: var(--sage-accent) !important;
 }
 
 .info-row span {
-  color: var(--em-muted) !important;
+  color: var(--sage-muted) !important;
 }
 
 .info-row strong {
-  color: var(--em-text) !important;
+  color: var(--sage-text) !important;
   overflow-wrap: anywhere;
 }
 
 .sidebar-footer,
 .sidebar-footer span,
 .sidebar-footer small {
-  color: var(--em-muted) !important;
+  color: var(--sage-muted) !important;
 }
 
-/* =============================================
-   CABECERA DEL VISUALIZADOR
-   ============================================= */
+/* ==========================================
+   ÁREA DE TRABAJO
+   ========================================== */
+
+.workspace {
+  background: var(--sage-bg) !important;
+}
 
 .workspace-header h2,
 #workspaceTitle {
-  color: var(--em-text) !important;
+  color: var(--sage-text) !important;
 }
 
 .workspace-header p,
 #workspaceDescription {
-  color: var(--em-muted) !important;
+  color: var(--sage-muted) !important;
 }
 
 .workspace-badge {
-  background: var(--em-soft) !important;
-  border: 1px solid #b6dfce !important;
-  color: var(--em-primary) !important;
-  border-radius: 9px;
+  background: var(--sage-active) !important;
+  border-color: #527567 !important;
+  color: #b9d9c8 !important;
 }
 
-/* =============================================
+/* ==========================================
    VISUALIZADOR
-   ============================================= */
+   ========================================== */
 
 .viewer-container {
-  background: var(--em-viewer) !important;
-  border: 1px solid #28413a !important;
-  border-radius: 18px;
-  box-shadow: var(--em-shadow);
+  background: var(--sage-viewer) !important;
+  border: 1px solid var(--sage-border) !important;
+  border-radius: 16px;
+  box-shadow: var(--sage-shadow);
   overflow: hidden;
 }
 
 .viewer-stage {
-  background-color: var(--em-viewer) !important;
-  color: #e9fff6 !important;
+  background: var(--sage-viewer) !important;
+  color: var(--sage-text) !important;
 }
 
-.viewer-stage .empty-state h3 {
-  color: #f0fff8 !important;
+.empty-state h3 {
+  color: var(--sage-text) !important;
 }
 
-.viewer-stage .empty-state p {
-  color: #a7c8b9 !important;
+.empty-state p {
+  color: var(--sage-muted) !important;
 }
 
 .empty-icon {
-  color: var(--em-mint) !important;
-  background: #1d3931 !important;
-  border-color: #326656 !important;
+  background: #2b403a !important;
+  border-color: #49695c !important;
+  color: var(--sage-accent) !important;
 }
 
 .viewer-toolbar {
-  background: #1a2d27 !important;
-  border-top: 1px solid #355348 !important;
-  color: #c6dfd2 !important;
+  background: #222e30 !important;
+  border-top: 1px solid var(--sage-border) !important;
 }
 
 #viewerStatus,
 #zoomIndicator {
-  color: #c6dfd2 !important;
+  color: var(--sage-muted) !important;
 }
 
 .eye-container {
-  background: #080e0c !important;
+  background: #111719 !important;
 }
 
 .eye-label {
-  background: #183d30 !important;
-  color: #83f1c4 !important;
-  border-color: #2c6d50 !important;
+  background: #2a4039 !important;
+  border-color: #527567 !important;
+  color: #bbdac9 !important;
 }
 
-/* =============================================
+/* ==========================================
    PANEL DE HERRAMIENTAS
-   ============================================= */
+   ========================================== */
 
-.tools-header h2 {
-  color: var(--em-text) !important;
+.tools-panel {
+  background: var(--sage-panel) !important;
+  border-left: 1px solid var(--sage-border) !important;
+}
+
+.tools-header h2,
+.section-title h3 {
+  color: var(--sage-text) !important;
 }
 
 .tools-icon {
-  color: var(--em-primary) !important;
-  background: var(--em-soft) !important;
+  background: var(--sage-active) !important;
+  color: var(--sage-accent) !important;
 }
 
 .tool-section {
-  border-color: var(--em-border) !important;
-}
-
-.section-title h3 {
-  color: var(--em-text) !important;
+  border-color: var(--sage-border) !important;
 }
 
 .control-group label,
 .control-heading label {
-  color: var(--em-muted) !important;
+  color: var(--sage-muted) !important;
 }
 
-.control-heading output,
-.control-group output {
-  color: var(--em-primary) !important;
+.control-group output,
+.control-heading output {
+  color: #b3d8c5 !important;
   font-weight: 700;
 }
 
-.control-group input[type="range"] {
-  accent-color: var(--em-primary);
-  cursor: pointer;
+.control-group input[type="range"],
+#scaleSlider,
+#brightnessSlider,
+#contrastSlider,
+#horizontalSlider,
+#verticalSlider {
+  accent-color: var(--sage-accent) !important;
 }
 
 .toggle-row {
-  color: var(--em-text) !important;
+  color: var(--sage-text) !important;
 }
 
 .toggle-switch {
-  background: #d2e1d8 !important;
-  border-color: #b8ccc0 !important;
+  background: #4b5d5d !important;
+  border-color: #647775 !important;
 }
 
 .toggle-row input:checked + .toggle-switch {
-  background: var(--em-primary) !important;
-  border-color: var(--em-primary) !important;
+  background: #658f7b !important;
+  border-color: #658f7b !important;
 }
 
-/* =============================================
-   AVISO DE CONFORT VISUAL
-   ============================================= */
+/* ==========================================
+   CONFORT VISUAL
+   ========================================== */
 
 .tools-help {
-  background: var(--em-soft) !important;
-  border: 1px solid #c3e5d3 !important;
+  background: #2d403a !important;
+  border: 1px solid #456253 !important;
   border-radius: 13px;
 }
 
 .tools-help strong {
-  color: var(--em-primary) !important;
+  color: #b3d8c5 !important;
 }
 
 .tools-help p {
-  color: #47685a !important;
+  color: #c1d0c8 !important;
 }
 
-/* =============================================
-   CONTROLES DEL VIDEO
-   ============================================= */
+/* ==========================================
+   REPRODUCTOR DE VIDEO
+   ========================================== */
 
 .video-controls {
-  background: var(--em-panel) !important;
-  border: 1px solid var(--em-border) !important;
+  background: var(--sage-panel) !important;
+  border: 1px solid var(--sage-border) !important;
   border-radius: 14px;
-  box-shadow: var(--em-shadow);
+  box-shadow: none !important;
 }
 
 .video-controls button {
-  background: var(--em-soft) !important;
-  color: var(--em-primary) !important;
-  border-color: #c4e4d4 !important;
+  background: var(--sage-panel-soft) !important;
+  color: var(--sage-text) !important;
+  border-color: var(--sage-border) !important;
 }
 
-.video-controls button:hover {
-  background: #c8ebda !important;
+.video-controls button:hover:not(:disabled) {
+  background: var(--sage-active) !important;
 }
 
 #playPauseBtn {
-  background: var(--em-primary) !important;
-  color: #ffffff !important;
+  background: var(--sage-accent-dark) !important;
+  color: #f0f7f2 !important;
 }
 
 #videoSeek,
 #volumeSlider {
-  accent-color: var(--em-primary) !important;
+  accent-color: var(--sage-accent) !important;
 }
 
 .time-display,
 .volume-control,
 .volume-control label {
-  color: var(--em-muted) !important;
+  color: var(--sage-muted) !important;
 }
 
-/* =============================================
-   PIE DE PÁGINA ACADÉMICO
-   ============================================= */
+/* ==========================================
+   FOOTER ACADÉMICO
+   ========================================== */
 
 .academic-footer {
-  background: #172b28 !important;
-  border-top: 3px solid var(--em-primary) !important;
+  background: #202b2d !important;
+  border-top: 1px solid var(--sage-border) !important;
 }
 
 .academic-footer-brand h2 {
-  color: #f2fff9 !important;
+  color: var(--sage-text) !important;
 }
 
 .academic-footer-brand p,
 .academic-footer-year,
 .academic-footer-bottom {
-  color: #a8c7ba !important;
+  color: var(--sage-muted) !important;
 }
 
 .academic-footer-label {
-  color: #8bdbb8 !important;
+  color: var(--sage-accent) !important;
 }
 
 .academic-footer-value {
-  color: #f2fff9 !important;
+  color: var(--sage-text) !important;
 }
 
 .academic-footer-divider {
-  background: #355148 !important;
+  background: var(--sage-border) !important;
 }
 
 .academic-footer-logo {
-  background: var(--em-primary) !important;
+  background: var(--sage-accent-dark) !important;
 }
 
 .app-footer {
-  background: #10221c !important;
-  border-top: 1px solid #304a3d !important;
+  background: #182123 !important;
+  border-top: 1px solid var(--sage-border) !important;
 }
 
 .app-footer,
 .app-footer span,
 #footerStatus {
-  color: #b8d9c8 !important;
+  color: var(--sage-muted) !important;
 }
 
-/* =============================================
-   MENSAJES Y NOTIFICACIONES
-   ============================================= */
+/* ==========================================
+   NOTIFICACIONES
+   ========================================== */
 
 .toast,
 .toast-container .toast {
-  background: #ffffff !important;
-  color: var(--em-text) !important;
-  border: 1px solid var(--em-border) !important;
-  border-left: 4px solid var(--em-primary) !important;
-  box-shadow: var(--em-shadow);
+  background: #2c383a !important;
+  color: var(--sage-text) !important;
+  border: 1px solid var(--sage-border) !important;
+  border-left: 3px solid var(--sage-accent) !important;
+  box-shadow: var(--sage-shadow);
 }
 
 .toast.error {
-  border-left-color: #c94c4c !important;
+  border-left-color: #c98585 !important;
 }
 
 .toast.success {
-  border-left-color: var(--em-primary) !important;
+  border-left-color: #91b5a5 !important;
 }
 
 .loading-overlay {
-  background: rgba(12,28,22,.88) !important;
-  color: #ffffff !important;
+  background: rgba(20, 30, 32, .91) !important;
+  color: var(--sage-text) !important;
 }
 
 .spinner {
-  border-top-color: var(--em-mint) !important;
+  border-top-color: var(--sage-accent) !important;
 }
 
-/* =============================================
+/* ==========================================
    PANTALLA COMPLETA ANAGLIFO
-   ============================================= */
+   ========================================== */
 
 #viewerStage.anaglyph-fullscreen {
   width: 100% !important;
   height: 100% !important;
   min-height: 100% !important;
   aspect-ratio: auto !important;
-  background: #000 !important;
+  background: #080c0d !important;
 }
 
 #viewerStage.anaglyph-fullscreen:fullscreen {
@@ -624,9 +587,9 @@ button:disabled {
   min-height: 44px;
   padding: 10px 14px;
   border-radius: 9px;
-  border: 1px solid rgba(255,255,255,.35);
-  background: #173d30;
-  color: white;
+  border: 1px solid #526e61;
+  background: #2b4039;
+  color: #e0e8e4;
   font-size: 12px;
   font-weight: 700;
 }
@@ -635,9 +598,9 @@ button:disabled {
   display: none !important;
 }
 
-/* =============================================
+/* ==========================================
    CONTROLES TÁCTILES
-   ============================================= */
+   ========================================== */
 
 .stereo-touch-panel {
   position: absolute;
@@ -651,8 +614,8 @@ button:disabled {
   gap: 8px;
 
   max-width: min(350px, 94vw);
+  color: var(--sage-text);
   font-family: system-ui, sans-serif;
-  color: #fff;
   pointer-events: auto;
 }
 
@@ -664,10 +627,10 @@ button:disabled {
   min-width: 44px;
   min-height: 44px;
   border-radius: 9px;
-  border: 1px solid #42735b;
+  border: 1px solid #526e61;
   padding: 9px 12px;
-  background: #204437;
-  color: white;
+  background: #30483e;
+  color: #e0e8e4;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
@@ -677,13 +640,13 @@ button:disabled {
 }
 
 .touch-action:active {
-  background: var(--em-primary);
+  background: #577d6e;
 }
 
 .touch-toggle {
-  background: var(--em-primary);
-  border-color: #7de6bc;
-  box-shadow: 0 4px 18px rgba(0,0,0,.4);
+  background: #48695e;
+  border-color: #779b87;
+  box-shadow: 0 4px 15px rgba(0,0,0,.2);
 }
 
 .touch-content {
@@ -695,13 +658,12 @@ button:disabled {
   width: min(350px, 94vw);
   padding: 12px;
   border-radius: 13px;
-  border: 1px solid #426957;
-  background: rgba(14,37,27,.96);
-  box-shadow: 0 12px 35px rgba(0,0,0,.4);
+  border: 1px solid #4b655b;
+  background: rgba(32, 43, 45, .97);
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
 }
 
-.stereo-touch-panel.expanded
-.touch-content {
+.stereo-touch-panel.expanded .touch-content {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -715,7 +677,7 @@ button:disabled {
 
 .touch-group-title {
   font-size: 11px;
-  color: #bde8d1;
+  color: #bbd5c6;
   font-weight: 600;
 }
 
@@ -729,9 +691,9 @@ button:disabled {
   flex: 1;
 }
 
-/* =============================================
+/* ==========================================
    MODO VR
-   ============================================= */
+   ========================================== */
 
 .vr-overlay,
 .vr-screen,
@@ -740,29 +702,20 @@ button:disabled {
   background: #000 !important;
 }
 
-/* Los controles internos de calibración VR
-   continúan siendo funcionales. */
-
 .vr-exit-btn,
 #exitVRBtn {
-  background: #173d30 !important;
-  color: #ffffff !important;
-  border-color: #42735b !important;
+  background: #293b35 !important;
+  border-color: #526e61 !important;
+  color: var(--sage-text) !important;
 }
 
-/* =============================================
-   RESPONSIVIDAD
-   ============================================= */
+/* ==========================================
+   PANTALLAS PEQUEÑAS
+   ========================================== */
 
 @media (max-width: 900px) {
-  .app-header,
-  .sidebar,
-  .tools-panel {
-    box-shadow: none;
-  }
-
   .viewer-container {
-    border-radius: 14px;
+    border-radius: 13px;
   }
 }
 
@@ -776,16 +729,12 @@ button:disabled {
     font-size: 12px;
   }
 
-  .workspace-header h2 {
-    font-size: clamp(20px, 5vw, 28px);
+  .example-button {
+    min-height: 46px;
   }
 
   .module-btn {
     min-height: 52px;
-  }
-
-  .example-button {
-    min-height: 46px;
   }
 }
 
@@ -796,6 +745,6 @@ and (max-height: 500px) {
   }
 }
 
-/* =============================================
-   FIN DEL TEMA EMERALD STUDIO
-   ============================================= */
+/* ==========================================
+   FIN - MIDNIGHT SAGE STUDIO
+   ========================================== */
