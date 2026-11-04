@@ -1,20 +1,580 @@
 
-/* ============================================
+/* =============================================
    STEREOVISION STUDIO 3D
-   Ejemplos y controles táctiles
-   ============================================ */
+   EMERALD STUDIO THEME
+   Blanco Perla + Verde Esmeralda
+   ============================================= */
+
+:root {
+  --em-bg: #f4f7f4;
+  --em-panel: #ffffff;
+  --em-panel-alt: #f8fbf9;
+  --em-border: #dce8e1;
+
+  --em-primary: #087f67;
+  --em-primary-dark: #076653;
+  --em-mint: #55d6b1;
+  --em-soft: #e1f4eb;
+
+  --em-text: #172b28;
+  --em-muted: #62786e;
+  --em-viewer: #111d1b;
+
+  --em-shadow:
+    0 8px 28px rgba(21, 65, 47, .07);
+}
+
+/* =============================================
+   BASE GENERAL
+   ============================================= */
+
+html {
+  background: var(--em-bg);
+}
+
+body {
+  background: var(--em-bg) !important;
+  color: var(--em-text) !important;
+}
+
+.app-shell {
+  background: var(--em-bg) !important;
+  color: var(--em-text) !important;
+  min-height: 100vh;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+button {
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
+}
+
+button:not(:disabled):active {
+  transform: scale(.98);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--em-primary);
+  outline-offset: 3px;
+}
+
+input[type="range"],
+input[type="checkbox"] {
+  accent-color: var(--em-primary);
+}
+
+/* =============================================
+   ENCABEZADO
+   ============================================= */
+
+.app-header {
+  background: var(--em-panel) !important;
+  border-bottom: 1px solid var(--em-border) !important;
+  box-shadow: 0 2px 14px rgba(0,0,0,.025);
+}
+
+.brand h1,
+.brand-info h1 {
+  color: var(--em-text) !important;
+}
+
+.brand-info span {
+  color: var(--em-primary) !important;
+}
+
+.brand-icon {
+  background: linear-gradient(
+    135deg,
+    var(--em-primary),
+    #23b58c
+  ) !important;
+
+  color: #fff !important;
+
+  box-shadow:
+    0 5px 14px rgba(8,127,103,.18) !important;
+}
+
+.header-status,
+#systemStatus {
+  color: var(--em-muted) !important;
+}
+
+.status-dot,
+.viewer-indicator,
+.footer-dot {
+  background: #18b68d !important;
+  box-shadow: 0 0 0 3px rgba(24,182,141,.1);
+}
+
+/* =============================================
+   BOTONES
+   ============================================= */
+
+.btn-primary,
+#enterVRBtn,
+#emptyImportBtn {
+  background: var(--em-primary) !important;
+  border-color: var(--em-primary) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 5px 13px rgba(8,127,103,.15) !important;
+}
+
+.btn-primary:hover:not(:disabled),
+#enterVRBtn:hover:not(:disabled),
+#emptyImportBtn:hover:not(:disabled) {
+  background: var(--em-primary-dark) !important;
+}
+
+.btn-outline,
+#resetAllBtn,
+#resetModuleBtn {
+  background: var(--em-panel) !important;
+  border: 1px solid var(--em-border) !important;
+  color: var(--em-text) !important;
+}
+
+.btn-outline:hover:not(:disabled),
+#resetAllBtn:hover:not(:disabled),
+#resetModuleBtn:hover:not(:disabled) {
+  background: var(--em-soft) !important;
+  border-color: var(--em-primary) !important;
+}
+
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  box-shadow: none !important;
+}
+
+/* =============================================
+   DISTRIBUCIÓN PRINCIPAL
+   ============================================= */
+
+.studio-layout {
+  background: var(--em-bg) !important;
+}
+
+.sidebar {
+  background: var(--em-panel) !important;
+  border-right: 1px solid var(--em-border) !important;
+}
+
+.workspace {
+  background: var(--em-bg) !important;
+}
+
+.tools-panel {
+  background: var(--em-panel) !important;
+  border-left: 1px solid var(--em-border) !important;
+}
+
+/* =============================================
+   BARRA LATERAL
+   ============================================= */
+
+.sidebar-heading,
+.sidebar-heading span,
+.info-heading,
+.eyebrow {
+  color: var(--em-primary) !important;
+}
+
+.sidebar-divider {
+  background: var(--em-border) !important;
+  border-color: var(--em-border) !important;
+}
+
+.module-btn {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: var(--em-text) !important;
+  border-radius: 12px;
+}
+
+.module-btn:hover:not(.active) {
+  background: var(--em-panel-alt) !important;
+  border-color: var(--em-border) !important;
+}
+
+.module-btn.active {
+  background: var(--em-soft) !important;
+  border-color: #b6dfce !important;
+  color: var(--em-primary) !important;
+}
+
+.module-label strong {
+  color: var(--em-text) !important;
+}
+
+.module-btn.active .module-label strong {
+  color: var(--em-primary) !important;
+}
+
+.module-label small {
+  color: var(--em-muted) !important;
+}
+
+.module-icon {
+  background: #eaf2ed !important;
+  color: var(--em-primary) !important;
+}
+
+.module-btn.active .module-icon {
+  background: var(--em-primary) !important;
+  color: #ffffff !important;
+}
+
+/* =============================================
+   IMPORTACIÓN Y EJEMPLOS
+   ============================================= */
+
+.import-section {
+  background: transparent !important;
+}
+
+.import-button {
+  background: var(--em-panel-alt) !important;
+  border: 1px dashed #9ac9b4 !important;
+  color: var(--em-text) !important;
+  border-radius: 14px;
+}
+
+.import-button:hover {
+  background: var(--em-soft) !important;
+  border-color: var(--em-primary) !important;
+}
+
+.import-button strong {
+  color: var(--em-text) !important;
+}
+
+.import-button small,
+#supportedFormats {
+  color: var(--em-muted) !important;
+}
+
+.import-icon {
+  background: var(--em-soft) !important;
+  color: var(--em-primary) !important;
+}
 
 .example-button {
   width: 100%;
   margin-top: 12px;
   padding: 13px;
   min-height: 44px;
-  border-color: #385070;
+
+  background: var(--em-primary) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--em-primary) !important;
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
 }
 
-/* ============================================
+.example-button:hover:not(:disabled) {
+  background: var(--em-primary-dark) !important;
+}
+
+/* =============================================
+   INFORMACIÓN DEL ARCHIVO
+   ============================================= */
+
+.file-information {
+  background: var(--em-panel-alt) !important;
+  border: 1px solid var(--em-border) !important;
+  border-radius: 12px;
+}
+
+.info-heading {
+  color: var(--em-primary) !important;
+}
+
+.info-row span {
+  color: var(--em-muted) !important;
+}
+
+.info-row strong {
+  color: var(--em-text) !important;
+  overflow-wrap: anywhere;
+}
+
+.sidebar-footer,
+.sidebar-footer span,
+.sidebar-footer small {
+  color: var(--em-muted) !important;
+}
+
+/* =============================================
+   CABECERA DEL VISUALIZADOR
+   ============================================= */
+
+.workspace-header h2,
+#workspaceTitle {
+  color: var(--em-text) !important;
+}
+
+.workspace-header p,
+#workspaceDescription {
+  color: var(--em-muted) !important;
+}
+
+.workspace-badge {
+  background: var(--em-soft) !important;
+  border: 1px solid #b6dfce !important;
+  color: var(--em-primary) !important;
+  border-radius: 9px;
+}
+
+/* =============================================
+   VISUALIZADOR
+   ============================================= */
+
+.viewer-container {
+  background: var(--em-viewer) !important;
+  border: 1px solid #28413a !important;
+  border-radius: 18px;
+  box-shadow: var(--em-shadow);
+  overflow: hidden;
+}
+
+.viewer-stage {
+  background-color: var(--em-viewer) !important;
+  color: #e9fff6 !important;
+}
+
+.viewer-stage .empty-state h3 {
+  color: #f0fff8 !important;
+}
+
+.viewer-stage .empty-state p {
+  color: #a7c8b9 !important;
+}
+
+.empty-icon {
+  color: var(--em-mint) !important;
+  background: #1d3931 !important;
+  border-color: #326656 !important;
+}
+
+.viewer-toolbar {
+  background: #1a2d27 !important;
+  border-top: 1px solid #355348 !important;
+  color: #c6dfd2 !important;
+}
+
+#viewerStatus,
+#zoomIndicator {
+  color: #c6dfd2 !important;
+}
+
+.eye-container {
+  background: #080e0c !important;
+}
+
+.eye-label {
+  background: #183d30 !important;
+  color: #83f1c4 !important;
+  border-color: #2c6d50 !important;
+}
+
+/* =============================================
+   PANEL DE HERRAMIENTAS
+   ============================================= */
+
+.tools-header h2 {
+  color: var(--em-text) !important;
+}
+
+.tools-icon {
+  color: var(--em-primary) !important;
+  background: var(--em-soft) !important;
+}
+
+.tool-section {
+  border-color: var(--em-border) !important;
+}
+
+.section-title h3 {
+  color: var(--em-text) !important;
+}
+
+.control-group label,
+.control-heading label {
+  color: var(--em-muted) !important;
+}
+
+.control-heading output,
+.control-group output {
+  color: var(--em-primary) !important;
+  font-weight: 700;
+}
+
+.control-group input[type="range"] {
+  accent-color: var(--em-primary);
+  cursor: pointer;
+}
+
+.toggle-row {
+  color: var(--em-text) !important;
+}
+
+.toggle-switch {
+  background: #d2e1d8 !important;
+  border-color: #b8ccc0 !important;
+}
+
+.toggle-row input:checked + .toggle-switch {
+  background: var(--em-primary) !important;
+  border-color: var(--em-primary) !important;
+}
+
+/* =============================================
+   AVISO DE CONFORT VISUAL
+   ============================================= */
+
+.tools-help {
+  background: var(--em-soft) !important;
+  border: 1px solid #c3e5d3 !important;
+  border-radius: 13px;
+}
+
+.tools-help strong {
+  color: var(--em-primary) !important;
+}
+
+.tools-help p {
+  color: #47685a !important;
+}
+
+/* =============================================
+   CONTROLES DEL VIDEO
+   ============================================= */
+
+.video-controls {
+  background: var(--em-panel) !important;
+  border: 1px solid var(--em-border) !important;
+  border-radius: 14px;
+  box-shadow: var(--em-shadow);
+}
+
+.video-controls button {
+  background: var(--em-soft) !important;
+  color: var(--em-primary) !important;
+  border-color: #c4e4d4 !important;
+}
+
+.video-controls button:hover {
+  background: #c8ebda !important;
+}
+
+#playPauseBtn {
+  background: var(--em-primary) !important;
+  color: #ffffff !important;
+}
+
+#videoSeek,
+#volumeSlider {
+  accent-color: var(--em-primary) !important;
+}
+
+.time-display,
+.volume-control,
+.volume-control label {
+  color: var(--em-muted) !important;
+}
+
+/* =============================================
+   PIE DE PÁGINA ACADÉMICO
+   ============================================= */
+
+.academic-footer {
+  background: #172b28 !important;
+  border-top: 3px solid var(--em-primary) !important;
+}
+
+.academic-footer-brand h2 {
+  color: #f2fff9 !important;
+}
+
+.academic-footer-brand p,
+.academic-footer-year,
+.academic-footer-bottom {
+  color: #a8c7ba !important;
+}
+
+.academic-footer-label {
+  color: #8bdbb8 !important;
+}
+
+.academic-footer-value {
+  color: #f2fff9 !important;
+}
+
+.academic-footer-divider {
+  background: #355148 !important;
+}
+
+.academic-footer-logo {
+  background: var(--em-primary) !important;
+}
+
+.app-footer {
+  background: #10221c !important;
+  border-top: 1px solid #304a3d !important;
+}
+
+.app-footer,
+.app-footer span,
+#footerStatus {
+  color: #b8d9c8 !important;
+}
+
+/* =============================================
+   MENSAJES Y NOTIFICACIONES
+   ============================================= */
+
+.toast,
+.toast-container .toast {
+  background: #ffffff !important;
+  color: var(--em-text) !important;
+  border: 1px solid var(--em-border) !important;
+  border-left: 4px solid var(--em-primary) !important;
+  box-shadow: var(--em-shadow);
+}
+
+.toast.error {
+  border-left-color: #c94c4c !important;
+}
+
+.toast.success {
+  border-left-color: var(--em-primary) !important;
+}
+
+.loading-overlay {
+  background: rgba(12,28,22,.88) !important;
+  color: #ffffff !important;
+}
+
+.spinner {
+  border-top-color: var(--em-mint) !important;
+}
+
+/* =============================================
    PANTALLA COMPLETA ANAGLIFO
-   ============================================ */
+   ============================================= */
 
 #viewerStage.anaglyph-fullscreen {
   width: 100% !important;
@@ -65,7 +625,7 @@
   padding: 10px 14px;
   border-radius: 9px;
   border: 1px solid rgba(255,255,255,.35);
-  background: rgba(10,16,30,.88);
+  background: #173d30;
   color: white;
   font-size: 12px;
   font-weight: 700;
@@ -75,9 +635,9 @@
   display: none !important;
 }
 
-/* ============================================
-   PANEL TÁCTIL
-   ============================================ */
+/* =============================================
+   CONTROLES TÁCTILES
+   ============================================= */
 
 .stereo-touch-panel {
   position: absolute;
@@ -91,7 +651,7 @@
   gap: 8px;
 
   max-width: min(350px, 94vw);
-  font-family: Inter, system-ui, sans-serif;
+  font-family: system-ui, sans-serif;
   color: #fff;
   pointer-events: auto;
 }
@@ -104,9 +664,9 @@
   min-width: 44px;
   min-height: 44px;
   border-radius: 9px;
-  border: 1px solid #425777;
+  border: 1px solid #42735b;
   padding: 9px 12px;
-  background: #1c2b46;
+  background: #204437;
   color: white;
   font-size: 13px;
   font-weight: 700;
@@ -117,12 +677,12 @@
 }
 
 .touch-action:active {
-  background: #377dff;
+  background: var(--em-primary);
 }
 
 .touch-toggle {
-  background: rgba(39,92,200,.96);
-  border-color: #6aa5ff;
+  background: var(--em-primary);
+  border-color: #7de6bc;
   box-shadow: 0 4px 18px rgba(0,0,0,.4);
 }
 
@@ -131,11 +691,12 @@
   max-height: min(65dvh, 390px);
   overflow-y: auto;
   overscroll-behavior: contain;
+
   width: min(350px, 94vw);
   padding: 12px;
   border-radius: 13px;
-  border: 1px solid #385070;
-  background: rgba(10,16,30,.94);
+  border: 1px solid #426957;
+  background: rgba(14,37,27,.96);
   box-shadow: 0 12px 35px rgba(0,0,0,.4);
 }
 
@@ -154,7 +715,7 @@
 
 .touch-group-title {
   font-size: 11px;
-  color: #bdd1f2;
+  color: #bde8d1;
   font-weight: 600;
 }
 
@@ -168,6 +729,43 @@
   flex: 1;
 }
 
+/* =============================================
+   MODO VR
+   ============================================= */
+
+.vr-overlay,
+.vr-screen,
+#vrOverlay,
+#vrScreen {
+  background: #000 !important;
+}
+
+/* Los controles internos de calibración VR
+   continúan siendo funcionales. */
+
+.vr-exit-btn,
+#exitVRBtn {
+  background: #173d30 !important;
+  color: #ffffff !important;
+  border-color: #42735b !important;
+}
+
+/* =============================================
+   RESPONSIVIDAD
+   ============================================= */
+
+@media (max-width: 900px) {
+  .app-header,
+  .sidebar,
+  .tools-panel {
+    box-shadow: none;
+  }
+
+  .viewer-container {
+    border-radius: 14px;
+  }
+}
+
 @media (max-width: 700px) {
   .touch-content {
     width: min(290px, 85vw);
@@ -177,6 +775,18 @@
   .touch-action {
     font-size: 12px;
   }
+
+  .workspace-header h2 {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+
+  .module-btn {
+    min-height: 52px;
+  }
+
+  .example-button {
+    min-height: 46px;
+  }
 }
 
 @media (orientation: landscape)
@@ -185,3 +795,7 @@ and (max-height: 500px) {
     max-height: 54dvh;
   }
 }
+
+/* =============================================
+   FIN DEL TEMA EMERALD STUDIO
+   ============================================= */
